@@ -1,0 +1,10 @@
+VERSION_1.0{
+  global:
+    createFromFile;
+    getNumChannels;
+    getSampleRate;
+    read;
+    destroy;
+  local:
+    *;
+};
