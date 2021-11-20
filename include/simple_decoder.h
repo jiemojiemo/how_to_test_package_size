@@ -6,19 +6,29 @@
 #define HOW_TO_TEST_PACKAGE_SIZE_SIMPLE_DECODER_H
 
 #include <stdlib.h>
+
+#if defined(__cplusplus)
+extern "C"{
+#endif
 typedef struct SimpleDecoder SimpleDecoder;
 
-enum FileType
-{
+enum FileType {
     kWav = 0,
     kMp3,
     kFlac
 };
 
-SimpleDecoder* createFromFile(const char* file_path, enum FileType type);
-int getNumChannels(SimpleDecoder* decoder);
-int getSampleRate(SimpleDecoder* decoder);
-size_t read(SimpleDecoder* decoder, float* out_interleave_data, int num_samples_per_channel);
-int destroy(SimpleDecoder* decoder);
+SimpleDecoder *createFromFile(const char *file_path, enum FileType type);
 
+int getNumChannels(SimpleDecoder *decoder);
+
+int getSampleRate(SimpleDecoder *decoder);
+
+size_t read(SimpleDecoder *decoder, float *out_interleave_data, int num_samples_per_channel);
+
+int destroy(SimpleDecoder *decoder);
+
+#if defined(__cplusplus)
+}
+#endif
 #endif //HOW_TO_TEST_PACKAGE_SIZE_SIMPLE_DECODER_H
