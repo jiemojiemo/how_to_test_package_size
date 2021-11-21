@@ -10,23 +10,17 @@
 #if defined(__cplusplus)
 extern "C"{
 #endif
-typedef struct SimpleDecoder SimpleDecoder;
+typedef struct SimpleWavDecoder SimpleWavDecoder;
 
-enum FileType {
-    kWav = 0,
-    kMp3,
-    kFlac
-};
+SimpleWavDecoder *createFromFile(const char *file_path);
 
-SimpleDecoder *createFromFile(const char *file_path, enum FileType type);
+int getNumChannels(SimpleWavDecoder *decoder);
 
-int getNumChannels(SimpleDecoder *decoder);
+int getSampleRate(SimpleWavDecoder *decoder);
 
-int getSampleRate(SimpleDecoder *decoder);
+size_t read(SimpleWavDecoder *decoder, float *out_interleave_data, int num_samples_per_channel);
 
-size_t read(SimpleDecoder *decoder, float *out_interleave_data, int num_samples_per_channel);
-
-int destroy(SimpleDecoder *decoder);
+int destroy(SimpleWavDecoder *decoder);
 
 #if defined(__cplusplus)
 }

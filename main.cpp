@@ -3,10 +3,7 @@
 //
 
 #include "simple_decoder.h"
-#include <iostream>
 #include <vector>
-
-
 
 #include <cassert>
 int main()
@@ -14,7 +11,7 @@ int main()
     {
         // can create wav file from path
         const char* path = "/Users/bytedance/Downloads/2_114_下雨天_bip_1.wav";
-        SimpleDecoder* decoder = createFromFile(path, kWav);
+        SimpleWavDecoder* decoder = createFromFile(path);
         assert(decoder != NULL);
 
         // can get number channels from wav
