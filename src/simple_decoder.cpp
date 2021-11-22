@@ -11,26 +11,25 @@ typedef struct SimpleWavDecoder{
     drwav wav;
 }SimpleWavDecoder;
 
-SimpleWavDecoder* createFromFile(const char* file_path)
+SimpleWavDecoder* SD_createFromFile(const char* file_path)
 {
     std::unique_ptr<SimpleWavDecoder> decoder = std::make_unique<SimpleWavDecoder>();
     if(!drwav_init_file(&decoder->wav, file_path, NULL)){
         decoder = nullptr;
     }
-
     return decoder.release();
 }
-int getNumChannels(SimpleWavDecoder* decoder)
+int SD_getNumChannels(SimpleWavDecoder* decoder)
 {
     assert(decoder != NULL);
     return decoder->wav.channels;
 }
-int getSampleRate(SimpleWavDecoder* decoder)
+int SD_getSampleRate(SimpleWavDecoder* decoder)
 {
     assert(decoder != NULL);
     return decoder->wav.sampleRate;
 }
-size_t read(SimpleWavDecoder* decoder, float* out_interleave_data, int num_samples_per_channel)
+size_t SD_read(SimpleWavDecoder* decoder, float* out_interleave_data, int num_samples_per_channel)
 {
     assert(decoder != NULL);
     assert(out_interleave_data != NULL);
@@ -40,7 +39,7 @@ size_t read(SimpleWavDecoder* decoder, float* out_interleave_data, int num_sampl
 
     return framesRead;
 }
-int destroy(SimpleWavDecoder* decoder)
+int SD_destroy(SimpleWavDecoder* decoder)
 {
     delete decoder;
     return 0;

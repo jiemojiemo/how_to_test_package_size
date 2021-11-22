@@ -15,28 +15,28 @@ typedef struct SimpleWavDecoder SimpleWavDecoder;
 /**
  * Create wave decoder from file path, return NULL if read file failed
  */
-SimpleWavDecoder *createFromFile(const char *file_path);
+SimpleWavDecoder *SD_createFromFile(const char *file_path);
 
 /**
  * Return the number of channels
  */
-int getNumChannels(SimpleWavDecoder *decoder);
+int SD_getNumChannels(SimpleWavDecoder *decoder);
 
 /**
  * Return the sample rate
  */
-int getSampleRate(SimpleWavDecoder *decoder);
+int SD_getSampleRate(SimpleWavDecoder *decoder);
 
 /**
  * Decode from wav file and fill the samples to `out_interleave_data`,
  * returns the number of frames actually decoded.
  */
-size_t read(SimpleWavDecoder *decoder, float *out_interleave_data, int num_samples_per_channel);
+size_t SD_read(SimpleWavDecoder *decoder, float *out_interleave_data, int num_samples_per_channel);
 
 /**
  * Destroy decoder and release resources
  */
-int destroy(SimpleWavDecoder *decoder);
+int SD_destroy(SimpleWavDecoder *decoder);
 
 #if defined(__cplusplus)
 }
